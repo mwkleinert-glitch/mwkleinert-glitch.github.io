@@ -42,8 +42,10 @@ ol{padding-left:24px} li{margin:6px 0}
   <div class="row" id="trucks"></div>
   <div class="row" id="days"></div>
   <div class="meta" id="meta"></div>
+  <div style="display:flex;flex-direction:column">
   <a class="cta apple" id="apple1" href="#">Start Apple Maps · turn-by-turn</a>
   <a class="cta google" id="google1" href="#">Start Google Maps · turn-by-turn</a>
+  </div>
   <a class="cta share" id="share" href="#">Share this day</a>
   <div class="legs" id="legs"></div>
   <p class="note">Maps caps waypoints. Leg 1, then Leg 2, through the last stop, then closest fill. Same pattern as Ken #113 and Tanner #116.</p>
@@ -58,18 +60,20 @@ const FILL = {ALAN:['Alanson bulk',45.441348,-84.761742],ELL_HQ:['Ellsworth HQ',
 let truck = localStorage.getItem('td.truck') || '113';
 let day = localStorage.getItem('td.day') || 'Monday';
 
+function isiPhone(){return /iPhone|iPad|iPod/i.test(navigator.userAgent)}
 function appleDir(a,b){return 'https://maps.apple.com/?saddr='+a[0]+','+a[1]+'&daddr='+b[0]+','+b[1]+'&dirflg=d'}
 function appleMulti(o,dest,mid){
   if(!mid.length) return appleDir(o,dest);
   return 'https://maps.apple.com/?saddr='+o[0]+','+o[1]+'&daddr='+mid.map(p=>p[0]+','+p[1]).join('+to:')+'+to:'+dest[0]+','+dest[1]+'&dirflg=d';
 }
 function googleDir(o,dest,mid){
-  let u='https://www.google.com/maps/dir/?api=1&origin='+o[0]+','+o[1]+'&destination='+dest[0]+','+dest[1]+'&travelmode=driving';
-  if(mid.length) u+='&waypoints='+encodeURIComponent(mid.map(p=>p[0]+','+p[1]).join('|'));
-  return u;
+  // Path form starts the route on phone Google Maps. api=1 + many waypoints
+  // often lands on "Dropped pin / Recents" and never hits Go.
+  const pts=[o].concat(mid||[]).concat([dest]);
+  return 'https://www.google.com/maps/dir/'+pts.map(p=>p[0]+','+p[1]).join('/')+'/data=!4m2!4m1!3e0';
 }
 function chunks(engine, origin, pts){
-  const size = engine==='apple'?10:9;
+  const size = engine==='apple'?10:6;
   const urls=[]; let from=origin;
   for(let i=0;i<pts.length;i+=size){
     const chunk=pts.slice(i,i+size);
@@ -94,6 +98,8 @@ function render(){
   document.getElementById('meta').textContent = '#'+p.t+' '+p.n+' · '+WD[day]+' · stops 1–'+d.n+' · '+d.mi+' road mi · fill '+(fill?fill[0]:d.f)+' · '+(p.k==='L'?'LOCKED home':'efficient start');
   const a1=document.getElementById('apple1'); a1.href=apple[0]||'#'; a1.textContent='Start Apple Maps · turn-by-turn · leg 1 of '+apple.length;
   const g1=document.getElementById('google1'); g1.href=google[0]||'#'; g1.textContent='Start Google Maps · turn-by-turn · leg 1 of '+google.length;
+  if(isiPhone()){ a1.style.order='0'; g1.style.order='1'; a1.textContent='Start Apple Maps (iPhone default) · leg 1 of '+apple.length; }
+  else { g1.style.order='0'; a1.style.order='1'; g1.textContent='Start Google Maps (Android default) · leg 1 of '+google.length; }
   document.getElementById('legs').innerHTML =
     apple.map((u,i)=>'<div><a href="'+u+'">Apple Maps · numbered leg '+(i+1)+' of '+apple.length+'</a></div>').join('')+
     google.map((u,i)=>'<div><a href="'+u+'">Google Maps · numbered leg '+(i+1)+' of '+google.length+'</a></div>').join('');
