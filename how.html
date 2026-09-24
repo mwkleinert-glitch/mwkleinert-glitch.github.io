@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="theme-color" content="#1b365d"/>
+<title>TankDesk — first time on the truck</title>
+<style>
+:root{--navy:#1b365d;--stay:#FFD600;--join:#4169E1;--paper:#f3eee3}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;background:var(--paper);color:#111}
+header{background:var(--navy);color:#fff;padding:calc(14px + env(safe-area-inset-top)) 16px 16px}
+h1{margin:0;font-size:22px}
+header p{margin:6px 0 0;opacity:.92}
+.wrap{padding:16px 16px 48px;max-width:720px}
+.step{background:#fff;border:1px solid #d7d0c3;border-radius:12px;padding:14px 16px;margin:12px 0}
+.num{display:inline-block;background:var(--navy);color:#fff;width:28px;height:28px;border-radius:14px;text-align:center;line-height:28px;font-weight:800;margin-right:8px}
+h2{margin:0 0 8px;font-size:18px}
+.stay{background:var(--stay);color:#111;font-weight:800;padding:2px 8px;border-radius:8px}
+.join{background:var(--join);color:#fff;font-weight:800;padding:2px 8px;border-radius:8px}
+.ok{background:#d7f5d7;border:1px solid #8dcf8d;border-radius:12px;padding:14px 16px;margin:12px 0}
+.bad{background:#ffe4e0;border:1px solid #e39;border-radius:12px;padding:14px 16px;margin:12px 0}
+a.btn{display:block;text-align:center;background:var(--navy);color:#fff;font-weight:800;text-decoration:none;padding:14px;border-radius:12px;margin:16px 0}
+li{margin:6px 0}
+.note{font-size:13px;color:#444}
+</style>
+</head>
+<body>
+<header>
+  <h1>First time in TankDesk</h1>
+  <p>Read this after the icon is already on your phone. Live off. Energy still bills.</p>
+</header>
+<div class="wrap">
+  <a class="btn" href="/">Open today’s book</a>
+
+  <div class="step">
+    <h2><span class="num">1</span> Open the app</h2>
+    <p>Tap the <b>TankDesk</b> icon on your Home Screen. You should see the navy header <b>TankDesk Driver Day</b> and a row of truck numbers.</p>
+    <p class="note">If you see a wall of code, you are not in Safari. Close it. Open the Safari app. Go to mwkleinert-glitch.github.io</p>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">2</span> Pick YOUR truck</h2>
+    <p>Tap your number once. It turns navy.</p>
+    <ul>
+      <li>101 Ray</li><li>105 Steve</li><li>107 Kim</li><li>109 Chris</li>
+      <li>111 Patrick</li><li>112 John</li><li>113 Ken</li><li>114 Doug</li>
+      <li>116 Tanner</li><li>117 Corey</li>
+    </ul>
+    <p>Wrong truck = wrong towns. If the name under the header is not you, tap again.</p>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">3</span> Pick the DAY you are running</h2>
+    <p>Night before: tap <b>tomorrow</b>. Morning: tap <b>today</b>. Mon Tue Wed Thu Fri.</p>
+    <p>The line under the buttons should read your name, that day, <b>stops 1–n</b>, and road miles.</p>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">4</span> Read the book before you roll</h2>
+    <p>Scroll the numbered list. Stop 1 is first. Last stop is last. After the last stop you go to the fill plant printed on the line (Alanson, Ellsworth, Kalkaska, or Boyne).</p>
+    <p><span class="stay">YELLOW STAY</span> = regular on your truck. You will see them again.</p>
+    <p><span class="join">BLUE JOIN</span> = on your run today only. Still fill it. Don’t assume it is yours next week.</p>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">5</span> Start turn-by-turn</h2>
+    <p>Tap the black button <b>Start Apple Maps · turn-by-turn</b> (or the blue Google button if that is what you use).</p>
+    <p>Apple Maps / Google Maps opens and talks. That is numbered <b>leg 1</b>.</p>
+    <p>Long days are split. When Maps says you arrived at the last pin of that leg, come back to TankDesk and tap <b>Apple Maps · numbered leg 2</b>.</p>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">6</span> At a stop</h2>
+    <p>Fill the tank like you always do. Then either let Maps continue, or tap <b>Apple next</b> on that stop to go only to the next number.</p>
+    <p>Do not skip around the list unless Megan told you to cut a stop.</p>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">7</span> End of day</h2>
+    <p>After the last numbered stop, Maps should send you to the closest fill. Pump. You are done with TankDesk for that book.</p>
+  </div>
+
+  <div class="ok">
+    <h2>You know it is working when</h2>
+    <ul>
+      <li>Header shows your truck number and your name.</li>
+      <li>Day chip is the day you are running.</li>
+      <li>List starts at <b>Stop 1</b> and counts up with no missing numbers.</li>
+      <li>Stops are yellow or blue, not all one color by accident of a bad tap.</li>
+      <li>Apple or Google opens with a driving route, not a dropped pin only.</li>
+      <li>The next house Maps names matches Stop 1 (or the next number you tapped).</li>
+    </ul>
+  </div>
+
+  <div class="bad">
+    <h2>Stop and call Megan / Micah if</h2>
+    <ul>
+      <li>The name is another driver.</li>
+      <li>The towns are not your territory.</li>
+      <li>Maps will not open.</li>
+      <li>Energy’s paper book and this list do not match and nobody told you which one wins today.</li>
+    </ul>
+    <p>Energy still owns the money file. If the two lists fight, ask. Do not guess.</p>
+  </div>
+
+  <p class="note">This sheet is for the phone app already on your Home Screen. TestFlight (App Store install) is a later copy of the same books. Same yellow / blue. Same numbered stops.</p>
+</div>
+</body>
+</html>
